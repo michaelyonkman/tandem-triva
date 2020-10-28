@@ -1,42 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import questions from '../data/questions.json';
 import Question from './Question';
+import QuestionCount from './QuestionCount';
+import AnswerOption from './AnswerOption';
 
-const Game = () => {
+const Game = (props) => {
   const [score, setScore] = useState(0);
   const [gameQuestions, setGameQuestions] = useState([]);
-  const [currQuestion, setCurrQuestion] = useState(0);
+  const [questionId, setQuestionId] = useState(0);
 
-  useEffect(() => {
-    setGameQuestions(fetchQuestions());
-  }, []);
-
-  const fetchQuestions = () => {
-    let questionsCopy = [...questions];
-    let randomizedQuestions = [];
-    for (let i = 0; i < 10; i++) {
-      let qIndex = Math.floor(Math.random() * questionsCopy.length);
-      let currQuestion = questionsCopy[qIndex];
-      currQuestion.answers = [
-        ...currQuestion.incorrect,
-        currQuestion.correct,
-      ].sort();
-      randomizedQuestions.push(currQuestion);
-      questionsCopy.splice(qIndex, 1);
-    }
-    return randomizedQuestions;
+  const renderAnswerOptions = (answer) => {
+    return (
+      <AnswerOption
+        key={answer}
+        answerContent={answer}
+        answerType={answer}
+        // answer={props.answer}
+        // questionId={props.questionId}
+        // onAnswerSelected={props.onAnswerSelected}
+      />
+    );
   };
 
   function incrementScore() {
     setScore((prevScore) => prevScore + 1);
   }
 
-  if (gameQuestions.length) {
+  if (props.gameQuestions.length) {
     return (
       <div className="game">
-        {console.log(gameQuestions)}
         <h1>Game</h1>
-        <Question question={gameQuestions[currQuestion].question} />
+        <QuestionCount counter="1" />
+        <Question question={props.gameQuestions[0].question} />
+        <ul className="answer-options">
+          {props.gameQuestions[questionId].answers.map((answer) =>
+            renderAnswerOptions(answer.text)
+          )}
+        </ul>
         <h1>Score: {score}</h1>
       </div>
     );
