@@ -10,7 +10,9 @@ const App = () => {
     questionId: 1,
     question: '',
     answerOptions: [],
+    correctAnswer: '',
     answer: '',
+    score: 0,
     isLoaded: false,
   });
 
@@ -23,6 +25,7 @@ const App = () => {
           gameQuestions: loadedQuestions,
           question: loadedQuestions[0].question,
           answerOptions: loadedQuestions[0].answers,
+          correctAnswer: loadedQuestions[0].correct,
           isLoaded: true,
         };
       });
@@ -55,9 +58,14 @@ const App = () => {
     loadQuestions();
   }, []);
 
-  const setNextQuestion = () => {
+  const setNextQuestion = (answer) => {
     const nextCount = state.counter + 1;
     const nextQuestionId = state.questionId + 1;
+    let questionScore = state.score;
+
+    if (answer === state.correctAnswer) {
+      questionScore += 1;
+    }
     setState((prevState) => {
       return {
         ...prevState,
@@ -65,7 +73,9 @@ const App = () => {
         questionId: nextQuestionId,
         question: state.gameQuestions[nextCount].question,
         answerOptions: state.gameQuestions[nextCount].answers,
+        correctAnswer: state.gameQuestions[nextCount].correct,
         answer: '',
+        score: questionScore,
       };
     });
   };
@@ -75,12 +85,11 @@ const App = () => {
       return { ...prevState, answer: event.target.value };
     });
     if (state.questionId < 10) {
-      setTimeout(() => setNextQuestion(), 300);
+      setTimeout(() => setNextQuestion(event.target.value), 300);
     }
   };
 
   if (state.isLoaded) {
-    console.log('IN APP', state.answer);
     return (
       <div className="App">
         <header className="App-header">
