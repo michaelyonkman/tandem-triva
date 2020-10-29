@@ -4,6 +4,7 @@ import QuestionCount from './QuestionCount';
 import AnswerOption from './AnswerOption';
 import Score from './Score';
 import AnswerResults from './AnswerResults';
+import GameResults from './GameResults';
 
 const Game = (props) => {
   const renderAnswerOptions = (answer) => {
@@ -18,24 +19,27 @@ const Game = (props) => {
       />
     );
   };
-
-  return (
-    <div className="game">
-      <h1>Game</h1>
-      <QuestionCount counter={props.questionId} />
-      <Question question={props.question} />
-      <ul className="answer-options">
-        {props.answerOptions.map((answerOption) =>
-          renderAnswerOptions(answerOption)
-        )}
-      </ul>
-      <AnswerResults
-        correctAnswer={props.correctAnswer}
-        answeredCorrectly={props.answeredCorrectly}
-      />
-      <Score score={props.score} />
-    </div>
-  );
+  if (!props.gameOver) {
+    return (
+      <div className="game">
+        <h1>Game</h1>
+        <QuestionCount counter={props.questionId} />
+        <Question question={props.question} />
+        <ul className="answer-options">
+          {props.answerOptions.map((answerOption) =>
+            renderAnswerOptions(answerOption)
+          )}
+        </ul>
+        <AnswerResults
+          correctAnswer={props.correctAnswer}
+          answeredCorrectly={props.answeredCorrectly}
+        />
+        <Score score={props.score} />
+      </div>
+    );
+  } else {
+    return <GameResults score={props.score} />;
+  }
 };
 
 export default Game;

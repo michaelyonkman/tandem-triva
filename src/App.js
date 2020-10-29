@@ -15,6 +15,7 @@ const App = () => {
     answeredCorrectly: null,
     score: 0,
     isLoaded: false,
+    gameOver: false,
   });
 
   console.log(state.gameQuestions);
@@ -94,6 +95,14 @@ const App = () => {
     });
     if (state.questionId < 10) {
       setTimeout(() => setNextQuestion(event.target.value), 3000);
+    } else {
+      setTimeout(
+        () =>
+          setState((prevState) => {
+            return { ...prevState, gameOver: true };
+          }),
+        3000
+      );
     }
   };
 
@@ -112,6 +121,7 @@ const App = () => {
           score={state.score}
           answeredCorrectly={state.answeredCorrectly}
           onAnswerSelected={handleAnswerSelected}
+          gameOver={state.gameOver}
         />
       </div>
     );
