@@ -16,6 +16,8 @@ const App = () => {
     isLoaded: false,
   });
 
+  console.log(state.gameQuestions);
+
   useEffect(() => {
     const loadQuestions = () => {
       const loadedQuestions = shuffleQuestions();
@@ -24,7 +26,7 @@ const App = () => {
           ...prevState,
           gameQuestions: loadedQuestions,
           question: loadedQuestions[0].question,
-          answerOptions: loadedQuestions[0].answers,
+          answerOptions: loadedQuestions[0].answerOptions,
           correctAnswer: loadedQuestions[0].correct,
           isLoaded: true,
         };
@@ -45,13 +47,8 @@ const App = () => {
     };
 
     const shuffleAnswers = (question) => {
-      let answers = question.incorrect.map((answer) => ({
-        text: answer,
-        correct: false,
-      }));
-      answers.push({ text: question.correct, correct: true });
-      answers.sort((a, b) => (a.text < b.text ? -1 : 1));
-      question.answers = answers;
+      let shuffledAnswers = [...question.incorrect, question.correct].sort();
+      question.answerOptions = shuffledAnswers;
       return question;
     };
 
@@ -72,7 +69,7 @@ const App = () => {
         counter: nextCount,
         questionId: nextQuestionId,
         question: state.gameQuestions[nextCount].question,
-        answerOptions: state.gameQuestions[nextCount].answers,
+        answerOptions: state.gameQuestions[nextCount].answerOptions,
         correctAnswer: state.gameQuestions[nextCount].correct,
         answer: '',
         score: questionScore,

@@ -24,7 +24,7 @@ const Game = (props) => {
       <Question question={props.question} />
       <ul className="answer-options">
         {props.answerOptions.map((answerOption) =>
-          renderAnswerOptions(answerOption.text)
+          renderAnswerOptions(answerOption)
         )}
       </ul>
     </div>
