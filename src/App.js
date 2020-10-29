@@ -4,22 +4,28 @@ import questions from '../src/data/questions.json';
 import Game from './components/Game';
 
 const App = () => {
-  const [gameQuestions, setGameQuestions] = useState([]);
-  const [counter, setCounter] = useState(0);
-  const [questionId, setQuestionId] = useState(1);
-  const [question, setQuestion] = useState('');
-  const [answerOptions, setAnswerOptions] = useState([]);
-  const [answer, setAnswer] = useState('');
-  const [score, setScore] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [state, setState] = useState({
+    gameQuestions: [],
+    counter: 0,
+    questionId: 1,
+    question: '',
+    answerOptions: [],
+    answer: '',
+    isLoaded: false,
+  });
 
   useEffect(() => {
     const loadQuestions = () => {
-      const gameQuestions = shuffleQuestions();
-      setGameQuestions(gameQuestions);
-      setQuestion(gameQuestions[0].question);
-      setAnswerOptions(gameQuestions[0].answers);
-      setIsLoaded(true);
+      const loadedQuestions = shuffleQuestions();
+      setState((prevState) => {
+        return {
+          ...prevState,
+          gameQuestions: loadedQuestions,
+          question: loadedQuestions[0].question,
+          answerOptions: loadedQuestions[0].answers,
+          isLoaded: true,
+        };
+      });
     };
 
     const shuffleQuestions = () => {
@@ -50,33 +56,41 @@ const App = () => {
   }, []);
 
   const setNextQuestion = () => {
-    const nextCount = counter + 1;
-    const nextQuestionId = questionId + 1;
-    setCounter(nextCount);
-    setQuestionId(nextQuestionId);
-    setQuestion(gameQuestions[nextCount].question);
-    setAnswerOptions(gameQuestions[nextCount].answers);
-    setAnswer('');
+    const nextCount = state.counter + 1;
+    const nextQuestionId = state.questionId + 1;
+    setState((prevState) => {
+      return {
+        ...prevState,
+        counter: nextCount,
+        questionId: nextQuestionId,
+        question: state.gameQuestions[nextCount].question,
+        answerOptions: state.gameQuestions[nextCount].answers,
+        answer: '',
+      };
+    });
   };
 
   const handleAnswerSelected = (event) => {
-    setAnswer(event.target.value);
-    if (questionId < 10) {
+    setState((prevState) => {
+      return { ...prevState, answer: event.target.value };
+    });
+    if (state.questionId < 10) {
       setTimeout(() => setNextQuestion(), 300);
     }
   };
 
-  if (isLoaded) {
+  if (state.isLoaded) {
+    console.log('IN APP', state.answer);
     return (
       <div className="App">
         <header className="App-header">
           <h1>Tandem Trivia</h1>
         </header>
         <Game
-          answer={answer}
-          answerOptions={answerOptions}
-          questionId={questionId}
-          question={question}
+          answer={state.answer}
+          answerOptions={state.answerOptions}
+          questionId={state.questionId}
+          question={state.question}
           onAnswerSelected={handleAnswerSelected}
         />
       </div>

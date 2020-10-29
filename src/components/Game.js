@@ -17,14 +17,15 @@ const Game = (props) => {
     );
   };
 
-  console.log(props);
   return (
     <div className="game">
       <h1>Game</h1>
       <QuestionCount counter={props.questionId} />
       <Question question={props.question} />
       <ul className="answer-options">
-        {props.answerOptions.map((answer) => renderAnswerOptions(answer.text))}
+        {props.answerOptions.map((answerOption) =>
+          renderAnswerOptions(answerOption.text)
+        )}
       </ul>
     </div>
   );
