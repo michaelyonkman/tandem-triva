@@ -2,8 +2,8 @@ import React from 'react';
 
 const Score = (props) => {
   return (
-    <div>
-      <h3 className="score">Score: {props.score}</h3>
+    <div className="score">
+      <span>Score {props.score}</span>
     </div>
   );
 };

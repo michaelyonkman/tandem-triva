@@ -2,21 +2,15 @@ import React from 'react';
 
 const AnswerOption = (props) => {
   return (
-    <li className="answer-option">
-      <input
-        type="radio"
-        className="radio-button"
-        name="radioGroup"
-        checked={props.answerType === props.answer}
-        id={props.answerType}
-        value={props.answerType}
-        disabled={props.answer}
-        onChange={props.onAnswerSelected}
-      />
-      <label className="radio-label" htmlFor={props.answerType}>
+    <div className="button-container">
+      <button
+        value={props.answerContent}
+        disabled={props.isAnswered}
+        onClick={props.onAnswerSelected}
+      >
         {props.answerContent}
-      </label>
-    </li>
+      </button>
+    </div>
   );
 };
 

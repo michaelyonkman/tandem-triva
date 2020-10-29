@@ -1,8 +1,8 @@
 import React from 'react';
 
 const AnswerResults = (props) => {
-  if (props.answeredCorrectly) {
-    if (props.answeredCorrectly === 'true') {
+  if (props.isAnswered) {
+    if (props.isAnswered === 'true') {
       return (
         <div className="correct-answer">
           <h1>Congrats!!! The correct answer is {props.correctAnswer}.</h1>

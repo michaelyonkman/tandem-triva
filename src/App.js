@@ -12,7 +12,7 @@ const App = () => {
     answerOptions: [],
     correctAnswer: '',
     answer: '',
-    answeredCorrectly: null,
+    isAnswered: null,
     score: 0,
     isLoaded: false,
     gameOver: false,
@@ -71,7 +71,7 @@ const App = () => {
         answerOptions: state.gameQuestions[nextCount].answerOptions,
         correctAnswer: state.gameQuestions[nextCount].correct,
         answer: '',
-        answeredCorrectly: null,
+        isAnswered: null,
       };
     });
   };
@@ -91,7 +91,7 @@ const App = () => {
         ...prevState,
         answer: event.target.value,
         score: questionScore,
-        answeredCorrectly: isCorrect,
+        isAnswered: isCorrect,
       };
     });
     if (state.questionId < 10) {
@@ -120,7 +120,7 @@ const App = () => {
           questionId={state.questionId}
           question={state.question}
           score={state.score}
-          answeredCorrectly={state.answeredCorrectly}
+          isAnswered={state.isAnswered}
           onAnswerSelected={handleAnswerSelected}
           gameOver={state.gameOver}
         />

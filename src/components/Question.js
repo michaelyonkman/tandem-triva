@@ -2,8 +2,8 @@ import React from 'react';
 
 const Question = (props) => {
   return (
-    <div>
-      <h2 className="question">{props.question}</h2>
+    <div className="question">
+      <h2>{props.question}</h2>
     </div>
   );
 };
