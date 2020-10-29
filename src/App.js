@@ -12,6 +12,7 @@ const App = () => {
     answerOptions: [],
     correctAnswer: '',
     answer: '',
+    answeredCorrectly: null,
     score: 0,
     isLoaded: false,
   });
@@ -68,20 +69,31 @@ const App = () => {
         answerOptions: state.gameQuestions[nextCount].answerOptions,
         correctAnswer: state.gameQuestions[nextCount].correct,
         answer: '',
+        answeredCorrectly: null,
       };
     });
   };
 
   const handleAnswerSelected = (event) => {
     let questionScore = state.score;
+    let isCorrect = null;
+
     if (event.target.value === state.correctAnswer) {
       questionScore += 1;
+      isCorrect = 'true';
+    } else {
+      isCorrect = 'false';
     }
     setState((prevState) => {
-      return { ...prevState, answer: event.target.value, score: questionScore };
+      return {
+        ...prevState,
+        answer: event.target.value,
+        score: questionScore,
+        answeredCorrectly: isCorrect,
+      };
     });
     if (state.questionId < 10) {
-      setTimeout(() => setNextQuestion(event.target.value), 300);
+      setTimeout(() => setNextQuestion(event.target.value), 3000);
     }
   };
 
@@ -94,9 +106,11 @@ const App = () => {
         <Game
           answer={state.answer}
           answerOptions={state.answerOptions}
+          correctAnswer={state.correctAnswer}
           questionId={state.questionId}
           question={state.question}
           score={state.score}
+          answeredCorrectly={state.answeredCorrectly}
           onAnswerSelected={handleAnswerSelected}
         />
       </div>

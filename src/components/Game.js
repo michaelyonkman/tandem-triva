@@ -3,6 +3,7 @@ import Question from './Question';
 import QuestionCount from './QuestionCount';
 import AnswerOption from './AnswerOption';
 import Score from './Score';
+import AnswerResults from './AnswerResults';
 
 const Game = (props) => {
   const renderAnswerOptions = (answer) => {
@@ -28,6 +29,10 @@ const Game = (props) => {
           renderAnswerOptions(answerOption)
         )}
       </ul>
+      <AnswerResults
+        correctAnswer={props.correctAnswer}
+        answeredCorrectly={props.answeredCorrectly}
+      />
       <Score score={props.score} />
     </div>
   );
