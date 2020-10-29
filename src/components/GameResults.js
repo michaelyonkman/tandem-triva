@@ -10,6 +10,7 @@ const GameResults = (props) => {
         <h1>Better Luck Next Time... </h1>
       )}
       <h1>You scored {props.score} out of a possible 10.</h1>
+      <button onClick={() => window.location.reload(false)}>Try Again</button>
     </div>
   );
 };

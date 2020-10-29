@@ -30,6 +30,7 @@ const App = () => {
           question: loadedQuestions[0].question,
           answerOptions: loadedQuestions[0].answerOptions,
           correctAnswer: loadedQuestions[0].correct,
+          gameOver: false,
           isLoaded: true,
         };
       });
