@@ -58,11 +58,7 @@ const App = () => {
   const setNextQuestion = (answer) => {
     const nextCount = state.counter + 1;
     const nextQuestionId = state.questionId + 1;
-    let questionScore = state.score;
 
-    if (answer === state.correctAnswer) {
-      questionScore += 1;
-    }
     setState((prevState) => {
       return {
         ...prevState,
@@ -72,14 +68,17 @@ const App = () => {
         answerOptions: state.gameQuestions[nextCount].answerOptions,
         correctAnswer: state.gameQuestions[nextCount].correct,
         answer: '',
-        score: questionScore,
       };
     });
   };
 
   const handleAnswerSelected = (event) => {
+    let questionScore = state.score;
+    if (event.target.value === state.correctAnswer) {
+      questionScore += 1;
+    }
     setState((prevState) => {
-      return { ...prevState, answer: event.target.value };
+      return { ...prevState, answer: event.target.value, score: questionScore };
     });
     if (state.questionId < 10) {
       setTimeout(() => setNextQuestion(event.target.value), 300);
@@ -97,6 +96,7 @@ const App = () => {
           answerOptions={state.answerOptions}
           questionId={state.questionId}
           question={state.question}
+          score={state.score}
           onAnswerSelected={handleAnswerSelected}
         />
       </div>
