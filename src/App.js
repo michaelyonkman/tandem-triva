@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
 import questions from '../src/data/questions.json';
 import Game from './components/Game';
 
@@ -17,8 +16,6 @@ const App = () => {
     isLoaded: false,
     gameOver: false,
   });
-
-  console.log(state.gameQuestions);
 
   useEffect(() => {
     const loadQuestions = () => {

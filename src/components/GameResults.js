@@ -3,7 +3,7 @@ import React from 'react';
 const GameResults = (props) => {
   return (
     <div className="game-results">
-      {props.score > 7 ? (
+      {props.score > 6 ? (
         <h1>Great job!!!</h1>
       ) : (
         <h1>Better luck next time... </h1>
