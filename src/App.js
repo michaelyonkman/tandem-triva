@@ -111,7 +111,7 @@ const App = () => {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>Tandem Trivia</h1>
+          <h1>tandem trivia</h1>
         </header>
         <Game
           answer={state.answer}
