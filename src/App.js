@@ -3,6 +3,7 @@ import questions from '../src/data/questions.json';
 import Game from './components/Game';
 
 const App = () => {
+  //initial state for App
   const [state, setState] = useState({
     gameQuestions: [],
     counter: 0,
@@ -17,6 +18,7 @@ const App = () => {
     gameOver: false,
   });
 
+  //loading questions from json file
   useEffect(() => {
     const loadQuestions = () => {
       const loadedQuestions = shuffleQuestions();
@@ -33,6 +35,7 @@ const App = () => {
       });
     };
 
+    //grabbing and shuffling 10 unique questions from data file
     const shuffleQuestions = () => {
       let questionsCopy = [...questions];
       let shuffledQuestions = [];
@@ -46,6 +49,7 @@ const App = () => {
       return shuffledQuestions;
     };
 
+    //combining incorrect and correct answers into one array and sorting them alpahbetically so correct answers aren't always in the same position
     const shuffleAnswers = (question) => {
       let shuffledAnswers = [...question.incorrect, question.correct].sort();
       question.answerOptions = shuffledAnswers;
@@ -55,6 +59,7 @@ const App = () => {
     loadQuestions();
   }, []);
 
+  //function to grab and set next question after user has answered previous one
   const setNextQuestion = (answer) => {
     const nextCount = state.counter + 1;
     const nextQuestionId = state.questionId + 1;
@@ -73,10 +78,12 @@ const App = () => {
     });
   };
 
+  //onClick function to handle answerSelection
   const handleAnswerSelected = (event) => {
     let questionScore = state.score;
     let isAnswered = null;
-
+    //logic to increment score if answer is correct
+    //isAnswered is set here to determine which AnswerResult version will be displayed
     if (event.target.value === state.correctAnswer) {
       questionScore += 1;
       isAnswered = 'correct';
@@ -91,6 +98,7 @@ const App = () => {
         isAnswered: isAnswered,
       };
     });
+    //setTimeout to display AnswerResult or GameResults
     if (state.questionId < 10) {
       setTimeout(() => setNextQuestion(event.target.value), 3000);
     } else {

@@ -1,3 +1,15 @@
+# Tandem Trivia
+
+A single-page web app built with React to play a quick game of trivia!
+
+## Getting Started
+
+To play Tandem Trivia fork and clone this repository. `npm install` and then `npm start`.
+
+I tried to keep the dependencies as simple as possible, but I did build out a test suite which can be run with `npm test`.
+
+Have fun trivia fans!!!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
