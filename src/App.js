@@ -78,20 +78,20 @@ const App = () => {
 
   const handleAnswerSelected = (event) => {
     let questionScore = state.score;
-    let isCorrect = null;
+    let isAnswered = null;
 
     if (event.target.value === state.correctAnswer) {
       questionScore += 1;
-      isCorrect = 'true';
+      isAnswered = 'correct';
     } else {
-      isCorrect = 'false';
+      isAnswered = 'incorrect';
     }
     setState((prevState) => {
       return {
         ...prevState,
         answer: event.target.value,
         score: questionScore,
-        isAnswered: isCorrect,
+        isAnswered: isAnswered,
       };
     });
     if (state.questionId < 10) {

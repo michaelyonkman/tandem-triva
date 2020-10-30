@@ -10,7 +10,7 @@ const GameResults = (props) => {
       )}
       <h2>
         You scored <span className="highlight-text">{props.score}</span> out of
-        a possible 10.
+        a possible <span className="highlight-text">10</span>.
       </h2>
       <div>
         <img
