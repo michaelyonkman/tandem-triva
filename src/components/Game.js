@@ -20,19 +20,18 @@ const Game = (props) => {
   if (!props.gameOver) {
     return (
       <div className="game">
-        <QuestionCount counter={props.questionId} />
         <Score score={props.score} />
-
+        <QuestionCount counter={props.questionId} />
         <Question question={props.question} />
+        <AnswerResults
+          correctAnswer={props.correctAnswer}
+          isAnswered={props.isAnswered}
+        />
         <div className="answer-options">
           {props.answerOptions.map((answerOption) =>
             renderAnswerOptions(answerOption)
           )}
         </div>
-        <AnswerResults
-          correctAnswer={props.correctAnswer}
-          isAnswered={props.isAnswered}
-        />
       </div>
     );
   } else {

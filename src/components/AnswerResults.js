@@ -4,19 +4,25 @@ const AnswerResults = (props) => {
   if (props.isAnswered) {
     if (props.isAnswered === 'true') {
       return (
-        <div className="correct-answer">
-          <h1>Congrats!!! The correct answer is {props.correctAnswer}.</h1>
+        <div className="answer-results">
+          <h2>
+            Correct!!! The correct answer is{' '}
+            <span className="highlight-text">{props.correctAnswer}</span>.
+          </h2>
         </div>
       );
     } else {
       return (
-        <div className="wrong-answer">
-          <h1>Booo!!! The correct answer was {props.correctAnswer}.</h1>
+        <div className="answer-results">
+          <h2>
+            Wrong!!! The correct answer is{' '}
+            <span className="highlight-text">{props.correctAnswer}</span>.
+          </h2>
         </div>
       );
     }
   } else {
-    return null;
+    return <div className="answer-results"></div>;
   }
 };
 

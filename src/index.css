@@ -1,12 +1,52 @@
 body {
   margin: 0;
-  background-color: #e4f2e4;
+  background-color: rgb(227, 218, 216);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .question {
+  font-size: 1.5em;
+  margin-top: 2em;
+}
+
+.answer-options {
   margin-top: 4em;
-  margin-bottom: 4em;
+}
+
+.highlight-text {
+  color: rgb(31, 102, 156);
+  text-decoration: underline;
+  text-decoration-color: rgb(229, 176, 35);
+  font-weight: bolder;
+  font-size: 110%;
+}
+
+button {
+  width: 40%;
+  height: 2em;
+  margin: 0.5em;
+  font-family: 'Inconsolata', monospace;
+  font-size: 1.5em;
+}
+
+button:hover {
+  color: rgb(31, 102, 156);
+}
+
+img {
+  border: 2px solid rgb(84, 140, 172);
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 50%;
+  height: auto;
+  margin: 2em;
+}
+
+.game-results h1 {
+  font-size: 3rem;
+  color: rgb(31, 102, 156);
+  text-decoration: underline;
+  text-decoration-color: rgb(229, 176, 35);
 }
