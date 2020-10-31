@@ -23,8 +23,8 @@ const Splash = () => {
               time's up. Each correct answer awards you{' '}
               <span className="highlight-text">1 point</span>. Be a rockstar and
               try to get all 10! When you're ready to play,{' '}
-              <span className="highlight-text">click</span> that button right
-              down there below our cute little tandem bikers.{' '}
+              <span className="highlight-text">click</span> that button down
+              there right below our cute little tandem bikers.{' '}
             </p>
           </div>
 
