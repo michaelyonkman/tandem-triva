@@ -3,6 +3,7 @@ import Question from './Question';
 import QuestionCount from './QuestionCount';
 import AnswerOption from './AnswerOption';
 import Score from './Score';
+import Timer from './Timer';
 import AnswerResults from './AnswerResults';
 import GameResults from './GameResults';
 
@@ -12,7 +13,7 @@ const Game = (props) => {
       <AnswerOption
         key={answer}
         answerContent={answer}
-        isAnswered={props.isAnswered}
+        answerStatus={props.answerStatus}
         onAnswerSelected={props.onAnswerSelected}
       />
     );
@@ -22,10 +23,11 @@ const Game = (props) => {
       <div className="game">
         <Score score={props.score} />
         <QuestionCount counter={props.questionId} />
+        <Timer timer={props.timer} />
         <Question question={props.question} />
         <AnswerResults
           correctAnswer={props.correctAnswer}
-          isAnswered={props.isAnswered}
+          answerStatus={props.answerStatus}
         />
         <div className="answer-options">
           {props.answerOptions.map((answerOption) =>

@@ -43,6 +43,11 @@ body {
   font-size: 120%;
 }
 
+.status-highlight-text {
+  font-size: 1.2rem;
+  color: black;
+}
+
 button {
   width: 40%;
   height: 2em;

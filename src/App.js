@@ -11,8 +11,7 @@ const App = () => {
     question: '',
     answerOptions: [],
     correctAnswer: '',
-    answer: '',
-    isAnswered: null,
+    answerStatus: null,
     score: 0,
     isLoaded: false,
     gameOver: false,
@@ -60,7 +59,7 @@ const App = () => {
   }, []);
 
   //function to grab and set next question after user has answered previous one
-  const setNextQuestion = (answer) => {
+  const setNextQuestion = () => {
     const nextCount = state.counter + 1;
     const nextQuestionId = state.questionId + 1;
 
@@ -72,35 +71,39 @@ const App = () => {
         question: state.gameQuestions[nextCount].question,
         answerOptions: state.gameQuestions[nextCount].answerOptions,
         correctAnswer: state.gameQuestions[nextCount].correct,
-        answer: '',
-        isAnswered: null,
+        answerStatus: null,
       };
     });
+    setTimer(30);
   };
 
   //onClick function to handle answerSelection
   const handleAnswerSelected = (event) => {
+    clearTimeout(stopTimer);
     let questionScore = state.score;
-    let isAnswered = null;
+    let answerStatus = null;
     //logic to increment score if answer is correct
-    //isAnswered is set here to determine which AnswerResult version will be displayed
+    //answerStatus is set here to determine which AnswerResult version will be displayed
     if (event.target.value === state.correctAnswer) {
       questionScore += 1;
-      isAnswered = 'correct';
+      answerStatus = 'correct';
     } else {
-      isAnswered = 'incorrect';
+      answerStatus = 'incorrect';
     }
     setState((prevState) => {
       return {
         ...prevState,
-        answer: event.target.value,
         score: questionScore,
-        isAnswered: isAnswered,
+        answerStatus: answerStatus,
       };
     });
-    //setTimeout to display AnswerResult or GameResults
+    handleAnswerFeedback();
+  };
+
+  //setTimeout to display AnswerResult or GameResults
+  const handleAnswerFeedback = () => {
     if (state.questionId < 10) {
-      setTimeout(() => setNextQuestion(event.target.value), 3000);
+      setTimeout(() => setNextQuestion(), 3000);
     } else {
       setTimeout(
         () =>
@@ -112,6 +115,30 @@ const App = () => {
     }
   };
 
+  //initial timer state
+  const [timer, setTimer] = useState(30);
+
+  //variable for clearTimeout
+  let stopTimer = null;
+
+  //function to start timer
+  const startTimer = () => {
+    stopTimer = setTimeout(() => setTimer(timer - 1), 1000);
+  };
+
+  //starts timer and if time runs out changes answerStatus to render Time Out
+  useEffect(() => {
+    if (timer > 0) {
+      startTimer();
+    } else {
+      setState((prevState) => {
+        return { ...prevState, answerStatus: 'timeOut' };
+      });
+      handleAnswerFeedback();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timer]);
+
   if (state.isLoaded) {
     return (
       <div className="App">
@@ -119,15 +146,15 @@ const App = () => {
           <h1>tandem trivia</h1>
         </header>
         <Game
-          answer={state.answer}
           answerOptions={state.answerOptions}
           correctAnswer={state.correctAnswer}
           questionId={state.questionId}
           question={state.question}
           score={state.score}
-          isAnswered={state.isAnswered}
+          answerStatus={state.answerStatus}
           onAnswerSelected={handleAnswerSelected}
           gameOver={state.gameOver}
+          timer={timer}
         />
       </div>
     );

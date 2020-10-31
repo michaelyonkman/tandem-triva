@@ -5,7 +5,7 @@ const AnswerOption = (props) => {
     <div className="button-container">
       <button
         value={props.answerContent}
-        disabled={props.isAnswered}
+        disabled={props.answerStatus}
         onClick={props.onAnswerSelected}
       >
         {props.answerContent}

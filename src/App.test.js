@@ -12,7 +12,7 @@ const dummyData = {
   questionId: 1,
   question: 'What is the letter after b?',
   gameOver: false,
-  isAnswered: null,
+  answerStatus: null,
   score: 0,
 };
 
@@ -42,7 +42,7 @@ describe('Game Component', () => {
         questionId={dummyData.questionId}
         question={dummyData.question}
         score={dummyData.score}
-        isAnswered={dummyData.isAnswered}
+        answerStatus={dummyData.answerStatus}
         gameOver={dummyData.gameOver}
       />
     );
