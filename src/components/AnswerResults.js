@@ -10,7 +10,7 @@ const AnswerResults = (props) => {
           ) : props.answerStatus === 'incorrect' ? (
             <span className="highlight-text">Wrong!!!</span>
           ) : (
-            <span className="highlight-text">Time's Up!!!</span>
+            <span className="highlight-text">Time's up!!!</span>
           )}{' '}
           The correct answer is{' '}
           <span className="highlight-text">{props.correctAnswer}</span>.
