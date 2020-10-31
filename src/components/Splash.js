@@ -17,14 +17,21 @@ const Splash = () => {
             <p className="rules">
               Welcome to <span className="highlight-text">Tandem Trivia</span>!{' '}
               The rules here are pretty simple... Each round is comprised of{' '}
-              <span className="highlight-text">10 questions</span>. You've got
-              <span className="highlight-text"> 30 seconds</span> to answer each
+              <span className="highlight-text">10 questions</span> with a
+              maximum value of <span className="highlight-text">30 points</span>{' '}
+              each. You've got{' '}
+              <span className="highlight-text">30 seconds</span> to answer each
               question before <span className="highlight-text">BOOM!!!</span>,
-              time's up. Each correct answer awards you{' '}
-              <span className="highlight-text">1 point</span>. Be a rockstar and
-              try to get all 10! When you're ready to play,{' '}
-              <span className="highlight-text">click</span> that button down
-              there right below our cute little tandem bikers.{' '}
+              time's up. But be quick, because{' '}
+              <span className="highlight-text">
+                the points you earn are equivalent to the number of seconds
+                remaining
+              </span>
+              . If you answer wrong, you get nada..., zip..., zero..., zilch...,
+              you get the idea. Be a rockstar and try to get all{' '}
+              <span className="highlight-text">300 points</span>! When you're
+              ready to play, <span className="highlight-text">click</span> that
+              button down there right below our cute little tandem bikers.{' '}
             </p>
           </div>
 

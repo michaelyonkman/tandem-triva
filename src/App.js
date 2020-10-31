@@ -85,7 +85,7 @@ const App = () => {
     //logic to increment score if answer is correct
     //answerStatus is set here to determine which AnswerResult version will be displayed
     if (event.target.value === state.correctAnswer) {
-      questionScore += 1;
+      questionScore += timer;
       answerStatus = 'correct';
     } else {
       answerStatus = 'incorrect';

@@ -3,14 +3,14 @@ import React from 'react';
 const GameResults = (props) => {
   return (
     <div className="game-results">
-      {props.score > 6 ? (
+      {props.score > 200 ? (
         <h1>Great job!!!</h1>
       ) : (
         <h1>Better luck next time... </h1>
       )}
       <h2>
         You scored <span className="highlight-text">{props.score}</span> out of
-        a possible <span className="highlight-text">10</span>.
+        a possible <span className="highlight-text">300</span>.
       </h2>
       <div>
         <img
