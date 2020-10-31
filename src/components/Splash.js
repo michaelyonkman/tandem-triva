@@ -28,7 +28,7 @@ const Splash = () => {
                 remaining
               </span>
               . If you answer wrong, you get nada..., zip..., zero..., zilch...,
-              you get the idea. Be a rockstar and try to get all{' '}
+              well you get the idea. Be a rockstar and try to get all{' '}
               <span className="highlight-text">300 points</span>! When you're
               ready to play, <span className="highlight-text">click</span> that
               button down there right below our cute little tandem bikers.{' '}
