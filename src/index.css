@@ -8,7 +8,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 4em;
+  font-size: 6vw;
   color: white;
   text-shadow: 2px 2px rgb(84, 140, 172);
   margin-bottom: 1em;
@@ -18,7 +18,7 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 0 4em 0;
   background-color: rgb(227, 218, 216);
 }
 
@@ -27,12 +27,17 @@ body {
 }
 
 .question {
-  font-size: 1.5em;
-  margin-top: 2em;
+  font-size: 2.25vw;
+  margin: 2em 2em 1em 2em;
 }
 
 .answer-options {
-  margin-top: 4em;
+  margin-top: 2em;
+}
+
+.answer-results {
+  font-size: 1.75vw;
+  margin: 0 2em 0 2em;
 }
 
 .highlight-text {
@@ -40,11 +45,11 @@ body {
   text-decoration: underline;
   text-decoration-color: rgb(229, 176, 35);
   font-weight: bolder;
-  font-size: 120%;
+  font-size: 110%;
 }
 
 .status-highlight-text {
-  font-size: 1.2rem;
+  font-size: 110%;
   color: black;
 }
 
@@ -53,11 +58,7 @@ button {
   height: 2em;
   margin: 0.5em;
   font-family: 'Inconsolata', monospace;
-  font-size: 1.5em;
-}
-
-.game-results button {
-  margin-bottom: 2em;
+  font-size: 2vw;
 }
 
 button:hover {
@@ -78,10 +79,14 @@ img {
 }
 
 .game-results h1 {
-  font-size: 3rem;
+  font-size: 4vw;
   color: rgb(31, 102, 156);
   text-decoration: underline;
   text-decoration-color: rgb(229, 176, 35);
+}
+
+.game-results h2 {
+  font-size: 2.5vw;
 }
 
 .rules-container {
@@ -89,9 +94,49 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.2em;
+  font-size: 2vw;
 }
 
 .rules {
-  width: 50%;
+  width: 70%;
+}
+
+.status-container {
+  font-size: 2vw;
+}
+
+@media only screen and (max-width: 600px) {
+  .App-header {
+    height: 20%;
+  }
+
+  button {
+    height: 3em;
+    width: 80%;
+    font-size: 5vw;
+  }
+
+  .rules-container {
+    font-size: 4vw;
+  }
+
+  .game-results h1 {
+    font-size: 6vw;
+  }
+
+  .game-results h2 {
+    font-size: 5vw;
+  }
+
+  .question h2 {
+    font-size: 7vw;
+  }
+
+  .answer-results {
+    font-size: 3.5vw;
+  }
+
+  .status-container {
+    font-size: 5vw;
+  }
 }

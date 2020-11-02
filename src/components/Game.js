@@ -21,9 +21,11 @@ const Game = (props) => {
   if (!props.gameOver) {
     return (
       <div className="game">
-        <Score score={props.score} />
-        <QuestionCount counter={props.questionId} />
-        <Timer timer={props.timer} />
+        <div className="status-container">
+          <Score score={props.score} />
+          <QuestionCount counter={props.questionId} />
+          <Timer timer={props.timer} />
+        </div>
         <Question question={props.question} />
         <AnswerResults
           correctAnswer={props.correctAnswer}
