@@ -8,7 +8,10 @@ const AnswerOption = (props) => {
         disabled={props.answerStatus}
         onClick={props.onAnswerSelected}
       >
-        {props.answerContent}
+        {props.answerContent
+          .replace(/&quot;/g, '"')
+          .replace(/&amp;/g, '&')
+          .replace(/&#039;/g, "'")}
       </button>
     </div>
   );

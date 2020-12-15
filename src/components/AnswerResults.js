@@ -13,7 +13,13 @@ const AnswerResults = (props) => {
             <span className="highlight-text">Time's up!!!</span>
           )}{' '}
           The correct answer is{' '}
-          <span className="highlight-text">{props.correctAnswer}</span>.
+          <span className="highlight-text">
+            {props.correctAnswer
+              .replace(/&quot;/g, '"')
+              .replace(/&amp;/g, '&')
+              .replace(/&#039;/g, "'")}
+          </span>
+          .
         </h2>
       </div>
     );

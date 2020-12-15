@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import questions from '../src/data/questions.json';
 import Game from './components/Game';
+import axios from 'axios';
 
 const App = () => {
   //initial state for App
@@ -15,47 +16,92 @@ const App = () => {
     score: 0,
     isLoaded: false,
     gameOver: false,
+    apiResponse: null,
   });
 
+  console.log(state);
   //loading questions from json file
+  // useEffect(() => {
+  //   const loadQuestions = () => {
+  //     const loadedQuestions = shuffleQuestions();
+  //     console.log('STATIC QUESTIONS', loadedQuestions);
+  //     setState((prevState) => {
+  //       return {
+  //         ...prevState,
+  //         gameQuestions: loadedQuestions,
+  //         question: loadedQuestions[0].question,
+  //         answerOptions: loadedQuestions[0].answerOptions,
+  //         correctAnswer: loadedQuestions[0].correct,
+  //         gameOver: false,
+  //         isLoaded: true,
+  //       };
+  //     });
+  //   };
+
+  //   //grabbing and shuffling 10 unique questions from data file
+  //   const shuffleQuestions = () => {
+  //     let questionsCopy = [...questions];
+  //     let shuffledQuestions = [];
+  //     for (let i = 0; i < 10; i++) {
+  //       let shuffleIndex = Math.floor(Math.random() * questionsCopy.length);
+  //       let currentQuestion = questionsCopy[shuffleIndex];
+  //       currentQuestion = shuffleAnswers(currentQuestion);
+  //       shuffledQuestions.push(currentQuestion);
+  //       questionsCopy.splice(shuffleIndex, 1);
+  //     }
+  //     return shuffledQuestions;
+  //   };
+
+  //   //combining incorrect and correct answers into one array and sorting them alpahbetically so correct answers aren't always in the same position
+  //   const shuffleAnswers = (question) => {
+  //     let shuffledAnswers = [...question.incorrect, question.correct].sort();
+  //     question.answerOptions = shuffledAnswers;
+  //     return question;
+  //   };
+
+  //   loadQuestions();
+  // }, []);
+
   useEffect(() => {
-    const loadQuestions = () => {
-      const loadedQuestions = shuffleQuestions();
+    //Async function to load question data
+    async function fetchData() {
+      let response = await axios.get('https://opentdb.com/api.php?amount=10');
+      for (let i = 0; i < response.data.results.length; i++) {
+        let shuffledAnswers = [
+          ...response.data.results[i].incorrect_answers,
+          response.data.results[i].correct_answer,
+        ].sort();
+        console.log(shuffledAnswers);
+        response.data.results[i].answerOptions = shuffledAnswers;
+      }
+      console.log('response parsed', response);
+      // let parseResponse = await response.data.results.map((question, i) => {
+      //   let shuffledAnswers = [
+      //     ...question.incorrect_answers,
+      //     question.correct_answer,
+      //   ].sort();
+      //   question.answerOptions = shuffledAnswers;
+      // });
+      // console.log('PARSED RESPONSE', parseResponse);
+      // setState((prevState) => {
+      //   return {
+      //     ...prevState,
+      //     apiResponse: response.data.results,
+      //   };
+      // })
       setState((prevState) => {
         return {
           ...prevState,
-          gameQuestions: loadedQuestions,
-          question: loadedQuestions[0].question,
-          answerOptions: loadedQuestions[0].answerOptions,
-          correctAnswer: loadedQuestions[0].correct,
+          gameQuestions: response.data.results,
+          question: response.data.results[0].question,
+          answerOptions: response.data.results[0].answerOptions,
+          correctAnswer: response.data.results[0].correct_answer,
           gameOver: false,
           isLoaded: true,
         };
       });
-    };
-
-    //grabbing and shuffling 10 unique questions from data file
-    const shuffleQuestions = () => {
-      let questionsCopy = [...questions];
-      let shuffledQuestions = [];
-      for (let i = 0; i < 10; i++) {
-        let shuffleIndex = Math.floor(Math.random() * questionsCopy.length);
-        let currentQuestion = questionsCopy[shuffleIndex];
-        currentQuestion = shuffleAnswers(currentQuestion);
-        shuffledQuestions.push(currentQuestion);
-        questionsCopy.splice(shuffleIndex, 1);
-      }
-      return shuffledQuestions;
-    };
-
-    //combining incorrect and correct answers into one array and sorting them alpahbetically so correct answers aren't always in the same position
-    const shuffleAnswers = (question) => {
-      let shuffledAnswers = [...question.incorrect, question.correct].sort();
-      question.answerOptions = shuffledAnswers;
-      return question;
-    };
-
-    loadQuestions();
+    }
+    fetchData();
   }, []);
 
   //function to grab and set next question after user has answered previous one
@@ -70,7 +116,7 @@ const App = () => {
         questionId: nextQuestionId,
         question: state.gameQuestions[nextCount].question,
         answerOptions: state.gameQuestions[nextCount].answerOptions,
-        correctAnswer: state.gameQuestions[nextCount].correct,
+        correctAnswer: state.gameQuestions[nextCount].correct_answer,
         answerStatus: null,
       };
     });
