@@ -1,4 +1,5 @@
 import React from 'react';
+const he = require('he');
 
 const AnswerResults = (props) => {
   if (props.answerStatus) {
@@ -14,10 +15,7 @@ const AnswerResults = (props) => {
           )}{' '}
           The correct answer is{' '}
           <span className="highlight-text">
-            {props.correctAnswer
-              .replace(/&quot;/g, '"')
-              .replace(/&amp;/g, '&')
-              .replace(/&#039;/g, "'")}
+            {he.decode(props.correctAnswer)}
           </span>
           .
         </h2>

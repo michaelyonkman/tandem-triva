@@ -11,9 +11,8 @@ const Splash = () => {
           <h1>tandem trivia</h1>
         </header>
         <div className="game-results">
-          <h1>Well, hello there!!!</h1>
-
           <div className="rules-container">
+            <h1 className="greeting">Well, hello there!!!</h1>
             <p className="rules">
               Welcome to <span className="highlight-text">Tandem Trivia</span>!{' '}
               The rules here are pretty simple... Each round is comprised of{' '}

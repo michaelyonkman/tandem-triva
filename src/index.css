@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   font-family: 'Inconsolata', monospace;
+  font-size: 6vw;
 }
 
 .App-header {
@@ -8,10 +9,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 6vw;
   color: white;
   text-shadow: 2px 2px rgb(84, 140, 172);
-  margin-bottom: 1em;
+  margin-bottom: 2rem;
   background-color: rgb(229, 176, 35);
   height: 12rem;
   border-bottom: 2px solid rgb(84, 140, 172);
@@ -32,12 +32,13 @@ body {
 }
 
 .answer-options {
-  margin-top: 2em;
+  margin-top: 2rem;
 }
 
 .answer-results {
   font-size: 1.75vw;
   margin: 0 2em 0 2em;
+  background-color: rgb(229, 176, 35, 0.2);
 }
 
 .highlight-text {
@@ -55,10 +56,11 @@ body {
 
 button {
   width: 40%;
-  height: 2em;
-  margin: 0.5em;
+  height: 100%;
+  padding: 0.25em;
+  /* margin: 0.5em; */
   font-family: 'Inconsolata', monospace;
-  font-size: 2vw;
+  font-size: 1.5rem;
 }
 
 button:hover {
@@ -75,7 +77,6 @@ img {
   padding: 5px;
   max-width: 50%;
   height: auto;
-  margin: 2em;
 }
 
 .game-results h1 {
@@ -94,7 +95,8 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2vw;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .rules {
@@ -102,41 +104,43 @@ img {
 }
 
 .status-container {
-  font-size: 2vw;
+  font-size: 1.5rem;
 }
 
 @media only screen and (max-width: 600px) {
   .App-header {
     height: 20%;
+    font-size: 1.75rem;
   }
 
   button {
-    height: 3em;
+    height: 3rem;
     width: 80%;
-    font-size: 5vw;
+    font-size: 1.5rem;
+    margin-top: 2rem;
   }
 
   .rules-container {
-    font-size: 4vw;
+    font-size: 1.5rem;
   }
 
   .game-results h1 {
-    font-size: 6vw;
+    font-size: 2rem;
   }
 
   .game-results h2 {
-    font-size: 5vw;
+    font-size: 1.5rem;
   }
 
   .question h2 {
-    font-size: 7vw;
+    font-size: 2rem;
   }
 
   .answer-results {
-    font-size: 3.5vw;
+    font-size: 1.25rem;
   }
 
   .status-container {
-    font-size: 5vw;
+    font-size: 1.5rem;
   }
 }

@@ -1,14 +1,10 @@
 import React from 'react';
+const he = require('he');
 
 const Question = (props) => {
   return (
     <div className="question">
-      <h2>
-        {props.question
-          .replace(/&quot;/g, '"')
-          .replace(/&amp;/g, '&')
-          .replace(/&#039;/g, "'")}
-      </h2>
+      <h2>{he.decode(props.question)}</h2>
     </div>
   );
 };

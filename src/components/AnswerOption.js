@@ -1,4 +1,5 @@
 import React from 'react';
+const he = require('he');
 
 const AnswerOption = (props) => {
   return (
@@ -8,10 +9,7 @@ const AnswerOption = (props) => {
         disabled={props.answerStatus}
         onClick={props.onAnswerSelected}
       >
-        {props.answerContent
-          .replace(/&quot;/g, '"')
-          .replace(/&amp;/g, '&')
-          .replace(/&#039;/g, "'")}
+        {he.decode(props.answerContent)}
       </button>
     </div>
   );
